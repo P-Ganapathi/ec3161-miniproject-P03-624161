@@ -1,0 +1,30 @@
+Consistency on larger instances: h(s) <= 1 + h(s') over every reachable state.
+instance: rows x cols, k packages, seed
+
+12x12 k=4 seed=0 states=1872  violations: h_far=0  h_mst=0  h_mst_plain=354
+12x12 k=4 seed=1 states=1808  violations: h_far=0  h_mst=0  h_mst_plain=413
+12x12 k=4 seed=2 states=1800  violations: h_far=0  h_mst=0  h_mst_plain=301
+12x12 k=4 seed=3 states=1888  violations: h_far=0  h_mst=0  h_mst_plain=384
+12x12 k=4 seed=4 states=1776  violations: h_far=0  h_mst=0  h_mst_plain=154
+12x12 k=4 seed=5 states=1920  violations: h_far=0  h_mst=0  h_mst_plain=391
+12x12 k=4 seed=6 states=1872  violations: h_far=0  h_mst=0  h_mst_plain=325
+12x12 k=4 seed=7 states=1720  violations: h_far=0  h_mst=0  h_mst_plain=175
+12x12 k=4 seed=8 states=1580  violations: h_far=0  h_mst=0  h_mst_plain=403
+12x12 k=4 seed=9 states=623  violations: h_far=0  h_mst=0  h_mst_plain=71
+12x12 k=6 seed=0 states=7424  violations: h_far=0  h_mst=0  h_mst_plain=1948
+12x12 k=6 seed=1 states=7168  violations: h_far=0  h_mst=0  h_mst_plain=1793
+12x12 k=6 seed=2 states=7104  violations: h_far=0  h_mst=0  h_mst_plain=1137
+12x12 k=6 seed=3 states=7488  violations: h_far=0  h_mst=0  h_mst_plain=1424
+12x12 k=6 seed=4 states=6816  violations: h_far=0  h_mst=0  h_mst_plain=1710
+12x12 k=8 seed=0 states=18656  violations: h_far=0  h_mst=0  h_mst_plain=3595
+12x12 k=8 seed=1 states=28416  violations: h_far=0  h_mst=0  h_mst_plain=7227
+12x12 k=8 seed=2 states=27200  violations: h_far=0  h_mst=0  h_mst_plain=5126
+10x10 k=7 seed=0 states=11040  violations: h_far=0  h_mst=0  h_mst_plain=2032
+10x10 k=7 seed=1 states=10112  violations: h_far=0  h_mst=0  h_mst_plain=2820
+10x10 k=7 seed=2 states=8424  violations: h_far=0  h_mst=0  h_mst_plain=2166
+
+TOTALS:
+  h_far        instances=21  reachable states checked=156707  consistency_violations=0  worst drop=0
+  h_mst        instances=21  reachable states checked=156707  consistency_violations=0  worst drop=0
+  h_mst_plain  instances=21  reachable states checked=156707  consistency_violations=33949  worst drop=2
+time: 9.7 s

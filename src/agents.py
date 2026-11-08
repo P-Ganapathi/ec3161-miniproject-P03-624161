@@ -77,7 +77,7 @@ def h_mst(problem, s):
     Admissible: a tour's first visited target x is at distance >= min_x manhattan(pos, x),
     and the rest of the tour is a connected walk through all targets, so its length is
     at least the MST over the targets. Each step costs at least its Manhattan length.
-    Consistent (checked empirically, see results/checker_report.txt)."""
+    Consistent on every instance tested (results/checker_report.txt, results/consistency_large.txt); not proven."""
     pos, rem = s
     dock = problem.w["dock"]
     targets = [dock] + list(rem)

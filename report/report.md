@@ -31,7 +31,7 @@ A robot must collect *k* packages on a 12 × 12 grid with about 20% walls, and r
 
 **Proof sketch for h_far consistency.** Let a move go from s to s′ by stepping to a neighbouring cell a. Distances change by at most 1 per step, so there are three cases. If the maximum at s is achieved by a package still remaining at s′, then f_p(pos) ≤ 1 + f_p(a) ≤ 1 + h(s′). If it is achieved by the package a just collected, then h(s) = 1 + d(a, dock). Since d(a, dock) ≤ d(a, p) + d(p, dock) for any remaining p, we get h(s') ≥ d(a, dock), so the inequality holds. If no packages remain, h(s) = d(pos, dock) ≤ 1 + d(a, dock).
 
-**Consistency of the fixed h_mst is not proven here.** The checker supports it on all 30 small instances, but I have not found a complete proof, so I list it as open.
+**Consistency of the fixed h_mst is not proven here.** The exact checker finds no violations on 30 small instances. On 21 larger instances (up to 12 × 12 with 8 packages), checking all 156,707 reachable states, it finds none either. The natural proof route fails: removing a package can make the minimum spanning tree heavier (with Manhattan distances, three packages around a centre cell have a tree of weight 3 with the centre and 4 without it), so any proof must use the attachment term. I list the proof as open.
 
 # 4. Experimental setup
 

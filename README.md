@@ -84,7 +84,8 @@ All numbers are means over **10 seeded worlds per k** (seeds 0–9, the same 40 
 | h_mst (fixed) | 0 | 0 |
 | h_mst_plain (first attempt) | 0 | 1,090 |
 
-4. **Unit tests.** 13 tests in `tests/test_p03.py`. Run them with `python -m unittest discover -s tests -v`. All pass.
+4. **Larger-instance consistency.** `src/check_consistency_large.py` checks h(s) ≤ 1 + h(s′) over every reachable state of 21 larger instances (up to 12 × 12, k = 8): 156,707 states. `h_far` and the fixed `h_mst` have 0 violations. The first MST version has 33,949, with a worst drop of 2.
+5. **Unit tests.** 13 tests in `tests/test_p03.py`. Run them with `python -m unittest discover -s tests -v`. All pass.
 
 **Paper proofs.**
 
@@ -97,7 +98,7 @@ All numbers are means over **10 seeded worlds per k** (seeds 0–9, the same 40 
 
 *h_mst (fixed) is admissible.* A route's first target after the start is some x in {dock} ∪ remaining. The first leg costs at least dist(pos, x). The rest of the route is a connected walk through all targets, so it costs at least the MST over those targets. This gives the bound used in the code.
 
-*h_mst (fixed) is consistent:* **not proven.** The checker finds no violations on the 30 small instances, and that is the evidence I have. A proof is an open item (see Section 7).
+*h_mst (fixed) is consistent:* **tested, not proven.** The exact checker finds no violations on the 30 small instances. On 21 larger instances (up to 12 × 12 with 8 packages), checking every reachable state, there are 0 violations out of 156,707 states. The natural proof route fails: removing a package can make the minimum spanning tree *heavier*. For example, with Manhattan distances, three packages at (1,0), (−1,0), (0,1) have a tree of weight 4 without the centre cell, but weight 3 with the centre cell (0,0) included. So any proof must use the attachment term. This is still open (Section 7).
 
 ## 6. Reproduce
 
@@ -114,8 +115,9 @@ pip install -r requirements.txt
 # 3. Run the tests
 python -m unittest discover -s tests -v
 
-# 4. Run the checker (writes results/checker_report.txt)
+# 4. Run the checkers (write results/checker_report.txt and results/consistency_large.txt)
 python src/checker.py
+python src/check_consistency_large.py
 
 # 5. Run all experiments (writes results/metrics.csv, results/summary.md, results/figures/)
 python src/experiment.py
@@ -127,8 +129,8 @@ Every instance is seeded, so the results repeat exactly. The only numbers that v
 
 ## 7. Limitations and next steps
 
-- **Consistency of the fixed h_mst is not proven.** It is tested, not proven. This is the main open item.
-- **Small grids for the checker.** Exact checking is only done on 6 × 6 worlds with k ≤ 4. Larger worlds are tested through the optimality agreement (exact costs), not through the full state-by-state checker.
+- **Consistency of the fixed h_mst is not proven.** It is tested on 21 larger instances and 30 small ones with zero violations, but not proven. Removing a package can make the MST heavier, so the proof must use the attachment term. This is the main open item.
+- **Exact admissibility is only checked on small grids.** The exact checker covers 6 × 6 worlds with k ≤ 4. On larger worlds, consistency is checked over all reachable states, and admissibility is checked through agreement with the exact optimal costs of the baseline search, not through a full cost-to-go computation.
 - **Only one grid size and one wall density** (12 × 12, 20% walls). Results could look different on denser or sparser warehouses.
 - **Only one inadmissible variant** was measured, with weight 2. A sweep over weights (1.2, 1.5, 2, 3) would show the trade-off curve more clearly.
 - **No heatmap of expanded states** (the optional stretch goal) was produced.
@@ -204,7 +206,8 @@ ec3161-miniproject-P03-624161/
 ├── src/
 │   ├── env.py             environment: imports the starter, BFS distances, instance builder
 │   ├── agents.py          heuristics (h0, h_far, h_mst, h_mst_plain), A*, permutation oracle
-│   ├── checker.py         exact admissibility and consistency checker
+│   ├── checker.py         exact admissibility and consistency checker (small grids)
+│   ├── check_consistency_large.py  consistency over all reachable states (larger grids)
 │   └── experiment.py      runs all methods on the same instances, writes results
 ├── tests/
 │   └── test_p03.py        13 unit tests
@@ -212,6 +215,7 @@ ec3161-miniproject-P03-624161/
 │   ├── metrics.csv        method, k, seed, metric, value (960 rows)
 │   ├── summary.md         mean +- std table
 │   ├── checker_report.txt checker output
+│   ├── consistency_large.txt  consistency output on larger grids
 │   └── figures/expanded_vs_k.png
 └── report/
     ├── report.md          4-6 page report (source)
