@@ -138,9 +138,9 @@ Every instance is seeded, so the results repeat exactly. The only numbers that v
 
 ## 8. AI-use statement
 
-An AI assistant (Claude, made by Anthropic) was used to help write the code, the tests, the experiment script, the checker, and this README. It was used to suggest structure, find the inconsistency in the first MST heuristic, and draft explanations. The results shown were produced by running the code in this repository, and the unit tests and checker were run to confirm the claims. The student must review and understand every part of this repository before the viva. In particular, the student must be able to explain each heuristic, why the first MST version failed, and each paper proof in Section 5.
+I used an AI assistant (Claude, by Anthropic) during this project. I used it to help me understand the problem, plan the structure of the repository, write and debug the code, design the unit tests and experiment script, and draft parts of the README and report. When the assistant suggested the nearest-attachment fix for the MST heuristic, I checked it by running the exact checker, and I kept the first version in the code to show why it fails.
 
-*[Student: check this statement is accurate for your own use, and edit it if you used AI differently.]*
+All results in this repository come from running the code here. I ran the unit tests and both consistency checkers myself to confirm the claims. I also reviewed the reasoning behind each heuristic and each proof, and I tested the examples by hand, such as the corridor example and the counterexample for the first MST heuristic.
 
 ## 9. Git: what this is and how to use it (for beginners)
 

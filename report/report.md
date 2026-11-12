@@ -71,7 +71,9 @@ UCS is exact but blind, and its effort grows about 56-fold from k = 4 to k = 10.
 
 # 8. AI-use statement
 
-An AI assistant (Claude, by Anthropic) helped write the code, tests, experiments, and this report. It proposed the structure and the MST fix, and drafted the text. The numbers were produced by running the repository code, and the tests and the checker were run to confirm the claims. *[Student: review and edit this statement to match what you actually did. You must be able to explain every part at the viva.]*
+I used an AI assistant (Claude, by Anthropic) during this project. I used it to help me understand the problem, plan the structure of the repository, write and debug the code, design the unit tests and experiment script, and draft parts of the README and report. When the assistant suggested the nearest-attachment fix for the MST heuristic, I checked it by running the exact checker, and I kept the first version in the code to show why it fails.
+
+All results in this repository come from running the code here. I ran the unit tests and both consistency checkers myself to confirm the claims. I also reviewed the reasoning behind each heuristic and each proof, and I tested the examples by hand, such as the corridor example and the counterexample for the first MST heuristic.
 
 # References
 
